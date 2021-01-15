@@ -3,6 +3,7 @@ import React from "react";
 // Components
 import Card from "../components/Card";
 import { InputText, InputMoney, InputNumber } from '../components/Inputs';
+import {ButtonClass} from '../components/types/ButtonsTypes';
 
 const Home = () => {
   return (
@@ -30,6 +31,11 @@ const Home = () => {
             </div>
             <InputMoney name="yearly_income" label="Estimated Yearly Income"/>
             <InputNumber name="credit_score" label="Estimated Credit Score" minNum={0} maxNum={850}/>
+
+            {/* Submit Button */}
+            <div className="pt-4">
+                <button className={ButtonClass.primary}>Next</button>
+            </div>
         </form>
       </Card>
     </div>
