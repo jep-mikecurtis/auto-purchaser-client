@@ -1,0 +1,16 @@
+.card {
+ width: 100%;
+ max-width: 700px;
+ min-height: 500px;
+ display: flex;
+
+    &__header {
+        flex: 1 1 33%;
+    }
+
+    &__body {
+        flex: 1 1 66%;
+        background-color: $primary;
+        color: #fff;
+    }
+}

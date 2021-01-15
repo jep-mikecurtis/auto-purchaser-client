@@ -1,1 +1,8 @@
-@import '~tailwind-sass';
+// Variables
+@import 'variables/colors';
+
+// App Layout
+@import 'layout/layout';
+
+// Components
+@import 'components/card'
