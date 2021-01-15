@@ -2,6 +2,7 @@ import React from "react";
 
 // Components
 import Card from "../components/Card";
+import { InputText, InputMoney, InputNumber } from '../components/Inputs';
 
 const Home = () => {
   return (
@@ -21,6 +22,15 @@ const Home = () => {
           architecto aspernatur eveniet in mollitia nisi nulla rerum vel.
           Expedita?
         </p>
+        <form className="flex flex-col space-y-2 mt-4">
+            <InputMoney name="purchase_price" label="Auto Purchase Price"/>
+            <div className="flex space-x-2">
+                <InputText name="auto_make" label="Auto Make"/>
+                <InputText name="auto_model" label="Auto Model"/>
+            </div>
+            <InputMoney name="yearly_income" label="Estimated Yearly Income"/>
+            <InputNumber name="credit_score" label="Estimated Credit Score" minNum={0} maxNum={850}/>
+        </form>
       </Card>
     </div>
   );
