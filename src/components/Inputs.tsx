@@ -2,16 +2,21 @@ import React from "react";
 import { InputClasses, InputType } from "./types/InputTypes";
 import NumberFormat from "react-number-format";
 
-export const InputText: React.FC<InputType> = ({ label, name, cb }) => (
+export const InputText: React.FC<InputType> = ({ label, name, setState }) => (
   <div className={InputClasses.formGroup}>
     <label htmlFor={name} className={InputClasses.label}>
       {label}
     </label>
-    <input type="text" name={name} className={InputClasses.input} />
+    <input
+      type="text"
+      name={name}
+      className={InputClasses.input}
+      onChange={(e) => setState(e.target.value)}
+    />
   </div>
 );
 
-export const InputMoney: React.FC<InputType> = ({ label, name, cb }) => (
+export const InputMoney: React.FC<InputType> = ({ label, name, setState }) => (
   <div className={InputClasses.formGroup}>
     <label htmlFor={name} className={InputClasses.label}>
       {label}
@@ -21,7 +26,7 @@ export const InputMoney: React.FC<InputType> = ({ label, name, cb }) => (
       prefix={"$"}
       name={name}
       className="w-full bg-gray-300 border border-gray-800 rounded shadow-sm text-gray-800 py-1 pl-2"
-      onChange={cb}
+      onChange={(e) => setState(e.target.value)}
     />
   </div>
 );
@@ -29,7 +34,7 @@ export const InputMoney: React.FC<InputType> = ({ label, name, cb }) => (
 export const InputNumber: React.FC<InputType> = ({
   label,
   name,
-  cb,
+  setState,
   minNum,
   maxNum,
 }) => {
@@ -57,7 +62,7 @@ export const InputNumber: React.FC<InputType> = ({
         max={maxNum}
         format={checkValue}
         className="w-full bg-gray-300 border border-gray-800 rounded shadow-sm text-gray-800 py-1 pl-2"
-        onChange={cb}
+        onChange={(e) => setState(e.target.value)}
       />
     </div>
   );

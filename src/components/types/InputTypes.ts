@@ -1,7 +1,7 @@
 export type InputType = {
     label: string,
     name: string,
-    cb?: any,
+    setState?: any,
     minNum?: number,
     maxNum?: number
 }

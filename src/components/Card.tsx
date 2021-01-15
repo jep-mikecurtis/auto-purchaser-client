@@ -2,7 +2,7 @@ import React from "react";
 
 type CardProps = {
   imgSrc: string;
-  children: JSX.Element | JSX.Element[] | string | string[];
+  children?: JSX.Element | JSX.Element[] | string | string[];
 };
 
 const Card: React.FC<CardProps> = ({ imgSrc, children }: CardProps) => (
