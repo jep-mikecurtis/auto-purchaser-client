@@ -1,23 +1,51 @@
 import React, { useState } from 'react';
+import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux';
-
-// Components
-import Card from "../../components/Card";
-import { InputText } from "../../components/Inputs";
-import { ButtonClass } from "../../components/types/ButtonsTypes";
 
 // Types
 import {AutoType} from '../../redux/actions/auto/AutoTypes';
-type StateType = {
+
+// Actions
+import {AuthRegister} from '../../redux/actions/auth/AuthActions';
+
+// Components
+import Card from "../../components/Card";
+import Errors from "../../components/Errors";
+import { InputText } from "../../components/Inputs";
+import { ButtonClass } from "../../components/types/ButtonsTypes";
+
+// Auto State Type From Store
+type AutoStateType = {
     auto: AutoType[]
 }
 
+type RegisterStateType = {
+    auth: {
+        success?: boolean
+        errors?: {
+            name?: []
+            email?: []
+            password?: []
+            passwordConfirm?: []
+        }
+    }
+}
+
+
+
 const Register = () => {
-    const auto = useSelector((state: StateType) => state.auto);
+    const dispatch = useDispatch();
+
+    // Get Autos From Redux Store
+    const auto = useSelector((state: AutoStateType) => state.auto);
+
+    // Get Register State
+    const registerState = useSelector((state: RegisterStateType) => state.auth);
+    const errors = registerState.errors;
     
     // SETUP STATE
-    const [name, setName] = useState(auto[0]?.name);
-    const [email, setEmail] = useState(auto[0]?.email);
+    const [name, setName] = useState(auto[0]?.name ?? '');
+    const [email, setEmail] = useState(auto[0]?.email ?? '');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
@@ -28,6 +56,8 @@ const Register = () => {
             password,
             passwordConfirm
         }
+
+        dispatch(AuthRegister(data))
     }
 
     return (
@@ -44,10 +74,21 @@ const Register = () => {
 
                 {/* Register FORM */}
                 <div className="flex flex-col space-y-2 mt-4">
+                    {/* Name */}
                     <InputText inputValue={name} name="name" label="Name" setState={setName}/>
+                    <small className="text-red-600 text-xs">{errors?.name}</small>
+
+                    {/* Email */}
                     <InputText inputValue={email} name="email" label="Email" setState={setEmail}/>
+                    <small className="text-red-600 text-xs">{errors?.email}</small>
+
+                    {/* Password */}
                     <InputText name="password" label="Password" password={true} setState={setPassword}/>
+                    <small className="text-red-600 text-xs">{errors?.password}</small>
+                    
+                    {/* Password Confirm */}
                     <InputText name="password_confirm" label="Confirm Password" password={true} setState={setPasswordConfirm}/>
+                    <small className="text-red-600 text-xs">{errors?.passwordConfirm}</small>
 
                     <div className="py-4">
                         <button className={ButtonClass.primary}
