@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 // Actions
 import {AuthLogin} from '../../redux/actions/auth/AuthActions';
+import {GetAutos} from '../../redux/actions/auto/AutoActions'
 
 // Components
 import Card from "../../components/Card";
@@ -40,6 +41,7 @@ const Login = () => {
         }
 
         dispatch(AuthLogin(data))
+        dispatch(GetAutos(data))
     }
 
     return (

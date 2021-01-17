@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { async } from 'q';
 import {Dispatch} from 'redux'
 import {history} from '../../store';
 
 // Types
 import {AUTH_REGISTER, AUTH_REGISTER_FAIL, AUTH_LOGIN, AUTH_LOGIN_FAIL, RegisterType, AuthResponseType, LoginType} from './AuthTypes'
+import {GetAutos} from '../auto/AutoActions';
 
 const url = "http://laravel-react.test/";
 
@@ -38,6 +38,7 @@ export const AuthLogin = (data: LoginType) => async (dispatch: Dispatch) => {
                 type: AUTH_LOGIN,
                 payload: res.data
             })
+   
             history.replace('/dashboard')
         } else {
             dispatch({

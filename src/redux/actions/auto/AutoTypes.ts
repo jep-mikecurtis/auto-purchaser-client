@@ -10,3 +10,7 @@ export type AutoType = {
     credit_score: number,
     message?: string
 }
+
+export type GetAutoData = {
+    email: string
+}

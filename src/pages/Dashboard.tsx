@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {history} from '../redux/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from "../components/Card";
 
 // Actions 
@@ -21,15 +21,13 @@ type AuthType = {
 }
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
     const auth = useSelector((state: AuthType) => state.auth);
     const autos = useSelector((state: AutoType) => state.auto);
     
     useEffect(() => {
-        console.log(auth);
         if(!auth.success) {
             history.replace('/login')
-        } else {
-            GetAutos(auth.user.email)
         }
     })
     return (
@@ -42,6 +40,10 @@ const Dashboard = () => {
                 {/* This will be for custom message */}
                 <div className="w-full flex-none text-sm font-bold text-green-300 mt-2 text-xl">
                     Current Auto Purchases
+                </div>
+
+                <div className="flex space-x-4">
+               
                 </div>
             </Card>
         </div>
