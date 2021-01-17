@@ -16,10 +16,15 @@ const Layout: React.FC = ({ children }) => {
                     </ul>
 
                     {/* Left Side */}
-                    <ul>
+                    <ul className="flex space-x-4">
                         <li>
                             <Link to="/login">
                                 Login
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/register">
+                                New Account
                             </Link>
                         </li>
                     </ul>

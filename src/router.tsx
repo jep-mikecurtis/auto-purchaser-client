@@ -11,6 +11,7 @@ import Layout from './layout/Layout';
 
 // Pages
 import Home from './pages/Home';
+import Register from './pages/auth/Register'
 
 
 export const RouterComponent = () => (
@@ -18,6 +19,7 @@ export const RouterComponent = () => (
         <Layout>
             <Switch>
                 <Route path="/" exact component={Home}/>
+                <Route path="/register" component={Register}/>
             </Switch>
         </Layout>
     </Router>

@@ -3,7 +3,9 @@ export type InputType = {
     name: string,
     setState?: any,
     minNum?: number,
-    maxNum?: number
+    maxNum?: number,
+    password?: boolean,
+    email?: boolean
 }
 
 type InputClassType = {
