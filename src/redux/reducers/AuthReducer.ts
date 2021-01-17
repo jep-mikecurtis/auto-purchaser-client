@@ -1,4 +1,4 @@
-import {AUTH_REGISTER, AUTH_REGISTER_FAIL, RegisterResponseType} from '../actions/auth/AuthTypes'
+import {AUTH_REGISTER, AUTH_REGISTER_FAIL,AUTH_LOGIN, AUTH_LOGIN_FAIL, AuthResponseType} from '../actions/auth/AuthTypes'
 
 type DefaultStateType = {
     success: boolean
@@ -16,7 +16,7 @@ const DefaultState: DefaultStateType= {
 
 type ActionType = {
     type:  string,
-    payload: RegisterResponseType
+    payload: AuthResponseType
 }
 
 const authReducer = (state:DefaultStateType = DefaultState, action: ActionType) => {
@@ -27,6 +27,16 @@ const authReducer = (state:DefaultStateType = DefaultState, action: ActionType) 
                 user: action.payload
             }
         case AUTH_REGISTER_FAIL:
+            return {
+                success: false,
+                errors: action.payload
+            }
+        case AUTH_LOGIN:
+            return {
+                success: true,
+                user: action.payload
+            }
+        case AUTH_LOGIN_FAIL:
             return {
                 success: false,
                 errors: action.payload
