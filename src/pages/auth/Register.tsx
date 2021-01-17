@@ -39,7 +39,7 @@ const Register = () => {
 
                 {/* This will be for custom message */}
                 <div className="w-full flex-none text-sm font-bold text-green-300 mt-2 text-xl">
-                    Over 10,000 Vehicle Types 
+                    {auto[0]?.message}
                 </div>
 
                 {/* Register FORM */}
