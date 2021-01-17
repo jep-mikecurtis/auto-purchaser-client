@@ -24,6 +24,7 @@ const Dashboard = () => {
     const autos = useSelector((state: AutoTypeArr) => state.auto);
     
     useEffect(() => {
+        console.log(auth);
         if(!auth.success) {
             history.replace('/login')
         }
