@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 // Components
 import Card from "../../components/Card";
-import { InputText, InputMoney, InputNumber } from "../../components/Inputs";
+import { InputText } from "../../components/Inputs";
 import { ButtonClass } from "../../components/types/ButtonsTypes";
 
 const Register = () => {
@@ -14,6 +14,10 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
+
+    const handleSubmit = () => {
+        console.log('hit');
+    }
 
     return (
         <div className="container mx-auto flex justify-center py-20">
@@ -35,7 +39,8 @@ const Register = () => {
                     <InputText name="password_confirm" label="Confirm Password" password={true} setState={setPasswordConfirm}/>
 
                     <div className="py-4">
-                        <button className={ButtonClass.primary}>Create</button>
+                        <button className={ButtonClass.primary}
+                         onClick={handleSubmit}>Create</button>
                     </div>
                 </div>
             </Card>
