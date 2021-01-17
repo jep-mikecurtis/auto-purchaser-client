@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from "../components/Card";
 import NumberFormat from 'react-number-format'
 
-// Actions 
-import {GetAutos} from '../redux/actions/auto/AutoActions';
-
 // Types
 import {AutoType} from '../redux/actions/auto/AutoTypes';
 type AutoTypeArr = {
@@ -23,7 +20,6 @@ type AuthType = {
 }
 
 const Dashboard = () => {
-    const dispatch = useDispatch();
     const auth = useSelector((state: AuthType) => state.auth);
     const autos = useSelector((state: AutoTypeArr) => state.auto);
     

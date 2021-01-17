@@ -1,4 +1,4 @@
-import {AUTH_REGISTER, AUTH_REGISTER_FAIL,AUTH_LOGIN, AUTH_LOGIN_FAIL, AuthResponseType} from '../actions/auth/AuthTypes'
+import { AUTH_REGISTER, AUTH_REGISTER_FAIL, AUTH_LOGIN, AUTH_LOGIN_FAIL, AUTH_LOGOUT, AuthResponseType } from '../actions/auth/AuthTypes'
 
 type DefaultStateType = {
     success: boolean
@@ -9,26 +9,26 @@ type DefaultStateType = {
     }
     errors?: []
 }
-const DefaultState: DefaultStateType= {
+const DefaultState: DefaultStateType = {
     success: false,
     user: {}
 };
 
 type ActionType = {
-    type:  string,
+    type: string,
     payload: AuthResponseType
 }
 
 //Check If Auth Was Saved To Local Storage
 // And Set Default State
 const auth = JSON.parse(localStorage.getItem('auth') || "{}");
-if(auth) {
+if (auth) {
     DefaultState.success = true
     DefaultState.user = auth
 }
 
-const authReducer = (state:DefaultStateType = DefaultState, action: ActionType) => {
-    switch(action.type) {
+const authReducer = (state: DefaultStateType = DefaultState, action: ActionType) => {
+    switch (action.type) {
         case AUTH_REGISTER:
             return {
                 success: true,
@@ -49,7 +49,12 @@ const authReducer = (state:DefaultStateType = DefaultState, action: ActionType) 
                 success: false,
                 errors: action.payload
             }
-        default: 
+        case AUTH_LOGOUT:
+            return {
+                success: false,
+                user: {}
+            }
+        default:
             return state;
     }
 }

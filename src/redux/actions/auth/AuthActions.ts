@@ -1,10 +1,11 @@
 import axios from 'axios'
 import {Dispatch} from 'redux'
 import {history} from '../../store';
+import store from '../../store';
 
 // Types
-import {AUTH_REGISTER, AUTH_REGISTER_FAIL, AUTH_LOGIN, AUTH_LOGIN_FAIL, RegisterType, AuthResponseType, LoginType} from './AuthTypes'
-import {GetAutos} from '../auto/AutoActions';
+import {AUTH_REGISTER, AUTH_REGISTER_FAIL, AUTH_LOGIN, AUTH_LOGIN_FAIL, AUTH_LOGOUT, RegisterType, AuthResponseType, AuthType, LoginType} from './AuthTypes'
+
 
 const url = "http://laravel-react.test/";
 
@@ -49,5 +50,25 @@ export const AuthLogin = (data: LoginType) => async (dispatch: Dispatch) => {
 
     } catch(err) {
         console.log(err);
+    }
+}
+
+export const AuthLogout = () => async (dispatch: Dispatch) => {
+    try {
+        const auth: AuthType = store.getState().auth;
+        if(auth.success) {
+            const res = await axios.post(url + 'api/logout', auth.user);
+            localStorage.removeItem('auth');
+            history.replace('/')
+
+            if(res.data.success) {
+                dispatch({
+                    type: AUTH_LOGOUT,
+                    payload: {}
+                })   
+            }
+        }
+    } catch(err) {
+       
     }
 }

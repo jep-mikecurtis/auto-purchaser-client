@@ -1,7 +1,25 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {AuthLogout} from '../redux/actions/auth/AuthActions'
+
+type AuthType = {
+    auth: {
+        success: boolean
+        user: {
+            email: string
+        }
+    }
+}
 
 const Layout: React.FC = ({ children }) => {
+    const auth = useSelector((state: AuthType) => state.auth);
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch(AuthLogout());
+    };
+
     return (
         <div className="layout flex flex-col min-h-screen bg-gray-700 text-gray-100">
             <nav className="bg-gray-900 py-2">
@@ -16,18 +34,27 @@ const Layout: React.FC = ({ children }) => {
                     </ul>
 
                     {/* Left Side */}
-                    <ul className="flex space-x-4">
-                        <li>
-                            <Link to="/login">
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/register">
-                                New Account
-                            </Link>
-                        </li>
-                    </ul>
+                    {!auth.success ? 
+                        // Is Auth
+                        <ul className="flex space-x-4">
+                            <li>
+                                <Link to="/login">
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/register">
+                                    New Account
+                                </Link>
+                            </li>
+                        </ul> :
+                        // Not Auth
+                        <ul className="flex space-x-4">
+                            <li>
+                                <button onClick={logout}>Logout</button>
+                            </li>
+                        </ul>
+                    }
                 </div>
             </nav>
             <main className="flex-1 flex flex-col">

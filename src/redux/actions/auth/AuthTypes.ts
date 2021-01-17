@@ -2,6 +2,7 @@ export const AUTH_REGISTER = 'AUTH_REGISTER';
 export const AUTH_REGISTER_FAIL = 'AUTH_REGISTER_FAIL';
 export const AUTH_LOGIN = 'AUTH_LOGIN';
 export const AUTH_LOGIN_FAIL = 'AUTH_LOGIN_FAIL';
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 
 // Register Typs
@@ -22,6 +23,15 @@ export type  AuthResponseType = {
     errors?: [
         {}
     ]
+}
+
+export type AuthType = {
+
+    success: boolean
+    user: {
+        email: string
+    }
+
 }
 
 

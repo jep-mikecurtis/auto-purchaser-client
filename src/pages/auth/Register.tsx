@@ -7,6 +7,7 @@ import {AutoType} from '../../redux/actions/auto/AutoTypes';
 
 // Actions
 import {AuthRegister} from '../../redux/actions/auth/AuthActions';
+import {GetAutos} from '../../redux/actions/auto/AutoActions'
 
 // Components
 import Card from "../../components/Card";
@@ -56,6 +57,7 @@ const Register = () => {
         }
 
         dispatch(AuthRegister(data))
+        dispatch(GetAutos(data))
     }
 
     return (
