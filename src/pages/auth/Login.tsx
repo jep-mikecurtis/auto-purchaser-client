@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import {AutoType} from '../../redux/actions/auto/AutoTypes';
 
 // Actions
-import {AuthRegister} from '../../redux/actions/auth/AuthActions';
+import {AuthLogin} from '../../redux/actions/auth/AuthActions';
 
 // Components
 import Card from "../../components/Card";
@@ -49,7 +49,7 @@ const Login = () => {
             password,
         }
 
-        // dispatch(AuthRegister(data))
+        dispatch(AuthLogin(data))
     }
 
     return (
