@@ -10,7 +10,6 @@ import {AuthRegister} from '../../redux/actions/auth/AuthActions';
 
 // Components
 import Card from "../../components/Card";
-import Errors from "../../components/Errors";
 import { InputText } from "../../components/Inputs";
 import { ButtonClass } from "../../components/types/ButtonsTypes";
 
@@ -85,7 +84,7 @@ const Register = () => {
                     {/* Password */}
                     <InputText name="password" label="Password" password={true} setState={setPassword}/>
                     <small className="text-red-600 text-xs">{errors?.password}</small>
-                    
+
                     {/* Password Confirm */}
                     <InputText name="password_confirm" label="Confirm Password" password={true} setState={setPasswordConfirm}/>
                     <small className="text-red-600 text-xs">{errors?.passwordConfirm}</small>
