@@ -2,7 +2,7 @@ import React from "react";
 import { InputClasses, InputType } from "./types/InputTypes";
 import NumberFormat from "react-number-format";
 
-export const InputText: React.FC<InputType> = ({ label, name, password, email, setState }) => (
+export const InputText: React.FC<InputType> = ({ label, name, password, email, inputValue, setState }) => (
   <div className={InputClasses.formGroup}>
     <label htmlFor={name} className={InputClasses.label}>
       {label}
@@ -10,6 +10,7 @@ export const InputText: React.FC<InputType> = ({ label, name, password, email, s
     <input
       type={password ? 'password' : email ? 'email' : 'text'}
       name={name}
+      value={inputValue}
       className={InputClasses.input}
       onChange={(e) => setState(e.target.value)}
     />

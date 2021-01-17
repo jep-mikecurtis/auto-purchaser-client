@@ -5,6 +5,8 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import { ConnectedRouter } from 'connected-react-router'
+import { history }  from './redux/store';
 
 // Main Layoit
 import Layout from './layout/Layout';
@@ -16,11 +18,13 @@ import Register from './pages/auth/Register'
 
 export const RouterComponent = () => (
     <Router>
-        <Layout>
-            <Switch>
-                <Route path="/" exact component={Home}/>
-                <Route path="/register" component={Register}/>
-            </Switch>
-        </Layout>
+        <ConnectedRouter history={history}>
+            <Layout>
+                <Switch>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/register" component={Register}/>
+                </Switch>
+            </Layout>
+        </ConnectedRouter>
     </Router>
 )

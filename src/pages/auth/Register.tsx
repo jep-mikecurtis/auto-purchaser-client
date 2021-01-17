@@ -6,17 +6,28 @@ import Card from "../../components/Card";
 import { InputText } from "../../components/Inputs";
 import { ButtonClass } from "../../components/types/ButtonsTypes";
 
+// Types
+import {AutoType} from '../../redux/actions/auto/AutoTypes';
+type StateType = {
+    auto: AutoType[]
+}
+
 const Register = () => {
-    const auto = useSelector((state: any) => state.auto);
+    const auto = useSelector((state: StateType) => state.auto);
     
     // SETUP STATE
-    const [name, setName] = useState(auto?.name);
-    const [email, setEmail] = useState('');
+    const [name, setName] = useState(auto[0]?.name);
+    const [email, setEmail] = useState(auto[0]?.email);
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const handleSubmit = () => {
-        console.log('hit');
+        const data = {
+            name,
+            email,
+            password,
+            passwordConfirm
+        }
     }
 
     return (
@@ -33,8 +44,8 @@ const Register = () => {
 
                 {/* Register FORM */}
                 <div className="flex flex-col space-y-2 mt-4">
-                    <InputText name="name" label="Name" setState={setName}/>
-                    <InputText name="email" label="Email" setState={setEmail}/>
+                    <InputText inputValue={name} name="name" label="Name" setState={setName}/>
+                    <InputText inputValue={email} name="email" label="Email" setState={setEmail}/>
                     <InputText name="password" label="Password" password={true} setState={setPassword}/>
                     <InputText name="password_confirm" label="Confirm Password" password={true} setState={setPasswordConfirm}/>
 

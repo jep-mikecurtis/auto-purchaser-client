@@ -1,11 +1,12 @@
 export type InputType = {
-    label: string,
-    name: string,
-    setState?: any,
-    minNum?: number,
-    maxNum?: number,
-    password?: boolean,
+    label: string
+    name: string
+    setState?: any
+    minNum?: number
+    maxNum?: number
+    password?: boolean
     email?: boolean
+    inputValue?: string | number
 }
 
 type InputClassType = {
