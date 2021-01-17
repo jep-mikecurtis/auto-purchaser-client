@@ -1,6 +1,8 @@
 export const AUTO_CREATE = "AUTO_CREATE";
+export const AUTO_GET = "AUTO_GET";
 
 export type AutoType = {
+    id?: number
     email: string
     name: string,
     purchase_price: string,

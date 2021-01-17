@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {history} from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from "../components/Card";
+import NumberFormat from 'react-number-format'
 
 // Actions 
 import {GetAutos} from '../redux/actions/auto/AutoActions';
 
 // Types
-type AutoType = {
-    auto: []
+import {AutoType} from '../redux/actions/auto/AutoTypes';
+type AutoTypeArr = {
+    auto: AutoType[]
 }
 
 type AuthType = {
@@ -23,7 +25,7 @@ type AuthType = {
 const Dashboard = () => {
     const dispatch = useDispatch();
     const auth = useSelector((state: AuthType) => state.auth);
-    const autos = useSelector((state: AutoType) => state.auto);
+    const autos = useSelector((state: AutoTypeArr) => state.auto);
     
     useEffect(() => {
         if(!auth.success) {
@@ -42,8 +44,19 @@ const Dashboard = () => {
                     Current Auto Purchases
                 </div>
 
-                <div className="flex space-x-4">
-               
+                <div className="flex flex-col space-y-4 mt-4">
+                    {autos.map((auto) => (
+                        <div key={auto.id}>
+                            <div className="text-sm">
+                                <p> 
+                                    <b>Make: </b> {auto.auto_make} {auto.auto_model}
+                                </p>
+                                <p>
+                                    <b>Price: </b> <NumberFormat value={auto.purchase_price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                                </p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </Card>
         </div>
