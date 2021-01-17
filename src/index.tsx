@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './scss/Tailwind.scss';
 import './scss/App.scss';
 import {RouterComponent} from "./router";
-import { store } from './redux/store';
+import store  from './redux/store';
 import { Provider } from 'react-redux';
 
 

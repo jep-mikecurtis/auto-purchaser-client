@@ -1,11 +1,20 @@
 import React, { useState } from "react";
+import {useDispatch} from 'react-redux';
+
+// Actions & Types
+import {AutoType} from '../redux/actions/auto/AutoTypes';
+import {AutoApply} from '../redux/actions/auto/AutoActions';
 
 // Components
 import Card from "../components/Card";
 import { InputText, InputMoney, InputNumber } from "../components/Inputs";
 import { ButtonClass } from "../components/types/ButtonsTypes";
 
+
 const Home = () => {
+  // Init Dispatch
+  const dispatch = useDispatch();
+
   // State
   const [step, setStep] = useState(1);
   const [purchasePrice, setPurchasePrice] = useState("");
@@ -31,7 +40,17 @@ const Home = () => {
     }
 
     if (step === 'complete') {
-      console.log('complete');
+      const data: AutoType = {
+        email,
+        name,
+        purchase_price: purchasePrice,
+        auto_make: autoMake,
+        auto_model: autoModel,
+        yearly_income: yearlyIncome,
+        credit_score: creditScore
+      }
+
+      dispatch(AutoApply(data));
     }
   };
 

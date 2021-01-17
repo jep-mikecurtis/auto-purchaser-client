@@ -1,15 +1,11 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import {createStore, applyMiddleware} from "redux";
+import RootReducer from './reducers/RootReducer';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import thunk from 'redux-thunk'
+import { routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
+export const history = createBrowserHistory()
 
-export const store = configureStore({
-  reducer: {
+const Store = createStore(RootReducer(history), composeWithDevTools(applyMiddleware(routerMiddleware(history), thunk)));
 
-  },
-});
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export default Store;
