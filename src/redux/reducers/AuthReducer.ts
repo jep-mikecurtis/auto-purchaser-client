@@ -19,6 +19,14 @@ type ActionType = {
     payload: AuthResponseType
 }
 
+//Check If Auth Was Saved To Local Storage
+// And Set Default State
+const auth = JSON.parse(localStorage.getItem('auth') || "{}");
+if(auth) {
+    DefaultState.success = true
+    DefaultState.user = auth
+}
+
 const authReducer = (state:DefaultStateType = DefaultState, action: ActionType) => {
     switch(action.type) {
         case AUTH_REGISTER:

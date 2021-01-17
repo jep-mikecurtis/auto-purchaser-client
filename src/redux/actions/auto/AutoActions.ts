@@ -8,7 +8,6 @@ const url = "http://laravel-react.test/";
 export const AutoApply = (data: AutoType) =>  async (dispatch: Dispatch) => {
     try {
         const res = (await axios.post(url + 'api/auto', data)).data;
-        console.log(res);
         if(res.success) {
             dispatch({
                 type: AUTO_CREATE,
@@ -19,6 +18,15 @@ export const AutoApply = (data: AutoType) =>  async (dispatch: Dispatch) => {
         } else {
            
         }
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+export const GetAutos = (email: string) => async (dispatch: Dispatch) => {
+    try {
+        const res = (await axios.post(url + 'api/auto/get', email)).data;
+        console.log(res);
     } catch(err) {
         console.log(err);
     }

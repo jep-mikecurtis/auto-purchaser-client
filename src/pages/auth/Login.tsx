@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux';
 
-// Types
-import {AutoType} from '../../redux/actions/auto/AutoTypes';
-
 // Actions
 import {AuthLogin} from '../../redux/actions/auth/AuthActions';
 
@@ -13,19 +10,12 @@ import Card from "../../components/Card";
 import { InputText } from "../../components/Inputs";
 import { ButtonClass } from "../../components/types/ButtonsTypes";
 
-// Auto State Type From Store
-type AutoStateType = {
-    auto: AutoType[]
-}
-
 type RegisterStateType = {
     auth: {
         success?: boolean
         errors?: {
-            name?: []
             email?: []
-            password?: []
-            passwordConfirm?: []
+            error?: []
         }
     }
 }
@@ -67,7 +57,7 @@ const Login = () => {
 
                     {/* Password */}
                     <InputText name="password" label="Password" password={true} setState={setPassword}/>
-                    <small className="text-red-600 text-xs">{errors?.password}</small>
+                    <small className="text-red-600 text-xs">{errors?.error}</small>
 
                     <div className="py-4">
                         <button className={ButtonClass.primary}

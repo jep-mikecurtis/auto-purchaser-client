@@ -31,7 +31,8 @@ export const AuthRegister = (data: RegisterType) =>  async (dispatch: Dispatch) 
 export const AuthLogin = (data: LoginType) => async (dispatch: Dispatch) => {
     try {
         const res: AuthResponseType = (await axios.post(url + 'api/login', data)).data;
-
+        localStorage.setItem('auth', JSON.stringify(res.data));
+        
         if(res.success) {
             dispatch({
                 type: AUTH_LOGIN,
