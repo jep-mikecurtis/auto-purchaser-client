@@ -22,7 +22,7 @@ const Layout: React.FC = ({ children }) => {
 
     return (
         <div className="layout flex flex-col min-h-screen bg-gray-700 text-gray-100">
-            <nav className="bg-gray-900 py-2">
+            <nav className="bg-gray-900 py-2 px-4">
                 <div className="container mx-auto flex justify-between">
                     {/* Right Side */}
                     <ul>
