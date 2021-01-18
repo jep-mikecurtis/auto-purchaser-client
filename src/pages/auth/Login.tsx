@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux';
 
@@ -6,40 +6,34 @@ import { useSelector } from 'react-redux';
 import {AuthLogin} from '../../redux/actions/auth/AuthActions';
 import {GetAutos} from '../../redux/actions/auto/AutoActions'
 
+// Types
+import {AuthStateType} from '../../redux/actions/auth/AuthTypes'
+
 // Components
 import Card from "../../components/Card";
 import { InputText } from "../../components/Inputs";
 import { ButtonClass } from "../../components/types/ButtonsTypes";
-
-type RegisterStateType = {
-    auth: {
-        success?: boolean
-        errors?: {
-            email?: []
-            error?: []
-        }
-    }
-}
 
 
 const Login = () => {
     const dispatch = useDispatch();
 
     // Get Register State
-    const registerState = useSelector((state: RegisterStateType) => state.auth);
+    const registerState = useSelector((state: AuthStateType) => state.auth);
     const errors = registerState.errors;
     
     // SETUP STATE
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-
+    // Handle Form Submit Dispatch Actions
     const handleSubmit = () => {
         const data = {
             email,
             password,
         }
 
+        // Dispatch Login && Get all autos array
         dispatch(AuthLogin(data))
         dispatch(GetAutos(data))
     }
@@ -63,7 +57,7 @@ const Login = () => {
 
                     <div className="py-4">
                         <button className={ButtonClass.primary}
-                         onClick={handleSubmit}>Create</button>
+                         onClick={handleSubmit}>Login</button>
                     </div>
                 </div>
             </Card>

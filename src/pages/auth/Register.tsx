@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux';
 
-// Types
-import {AutoType} from '../../redux/actions/auto/AutoTypes';
-
 // Actions
 import {AuthRegister} from '../../redux/actions/auth/AuthActions';
 import {GetAutos} from '../../redux/actions/auto/AutoActions'
@@ -15,18 +12,8 @@ import { InputText } from "../../components/Inputs";
 import { ButtonClass } from "../../components/types/ButtonsTypes";
 import {AutoStateType} from '../../redux/actions/auto/AutoTypes';
 
-type RegisterStateType = {
-    auth: {
-        success?: boolean
-        errors?: {
-            name?: []
-            email?: []
-            password?: []
-            passwordConfirm?: []
-        }
-    }
-}
-
+// Types
+import {AuthStateType} from '../../redux/actions/auth/AuthTypes'
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -35,7 +22,7 @@ const Register = () => {
     const auto = useSelector((state: AutoStateType) => state.auto);
 
     // Get Register State
-    const registerState = useSelector((state: RegisterStateType) => state.auth);
+    const registerState = useSelector((state: AuthStateType) => state.auth);
     const errors = registerState.errors;
     
     // SETUP STATE

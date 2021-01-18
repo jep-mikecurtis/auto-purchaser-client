@@ -13,6 +13,7 @@ export type RegisterType = {
     passwordConfirm: string
 }
 
+// Type Coming From Backend
 export type  AuthResponseType = {
     success: boolean
     data: {
@@ -23,6 +24,20 @@ export type  AuthResponseType = {
     errors?: [
         {}
     ]
+}
+
+// Type For Auth State
+export type AuthStateType = {
+    auth: {
+        success?: boolean
+        errors?: {
+            name?: []
+            email?: []
+            error?: []
+            password?: []
+            passwordConfirm?: []
+        }
+    }
 }
 
 export type AuthType = {
