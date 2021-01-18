@@ -16,3 +16,8 @@ export type AutoType = {
 export type GetAutoData = {
     email: string
 }
+
+// Auto State Type From Store
+export type AutoStateType = {
+    auto: AutoType[]
+}

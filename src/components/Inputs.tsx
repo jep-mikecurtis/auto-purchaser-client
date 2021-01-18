@@ -18,7 +18,7 @@ export const InputText: React.FC<InputType> = ({ label, name, password, email, i
   </div>
 );
 
-export const InputMoney: React.FC<InputType> = ({ label, name, setState }) => (
+export const InputMoney: React.FC<InputType> = ({ label, name, setState, inputValue }) => (
   <div className={InputClasses.formGroup}>
     <label htmlFor={name} className={InputClasses.label}>
       {label}
@@ -27,6 +27,7 @@ export const InputMoney: React.FC<InputType> = ({ label, name, setState }) => (
       thousandSeparator={true}
       prefix={"$"}
       name={name}
+      value={inputValue}
       className="w-full bg-gray-300 border border-gray-800 rounded shadow-sm text-gray-800 py-1 pl-2"
       onChange={(e) => setState(e.target.value)}
     />
@@ -39,6 +40,7 @@ export const InputNumber: React.FC<InputType> = ({
   setState,
   minNum,
   maxNum,
+  inputValue
 }) => {
   // Check the value of the input
   // Insure not lower than min or greater than max
@@ -62,6 +64,7 @@ export const InputNumber: React.FC<InputType> = ({
         name={name}
         min={minNum}
         max={maxNum}
+        value={inputValue}
         format={checkValue}
         className="w-full bg-gray-300 border border-gray-800 rounded shadow-sm text-gray-800 py-1 pl-2"
         onChange={(e) => setState(e.target.value)}

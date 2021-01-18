@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-// Actions & Types
-import {AutoType} from '../redux/actions/auto/AutoTypes';
+// Types
+import {AutoType, AutoStateType} from '../redux/actions/auto/AutoTypes';
+
+// Actions
 import {AutoApply} from '../redux/actions/auto/AutoActions';
 
 // Components
@@ -15,22 +17,26 @@ const Home = () => {
   // Init Dispatch
   const dispatch = useDispatch();
 
+  // Get Autos From Redux Store
+  const auto = useSelector((state: AutoStateType) => state.auto);
+
   // State
   const [step, setStep] = useState(1);
   const [purchasePrice, setPurchasePrice] = useState("");
   const [autoMake, setAutoMake] = useState("");
   const [autoModel, setAutoModel] = useState("");
-  const [yearlyIncome, setYearlyIncome] = useState("");
-  const [creditScore, setCreditScore] = useState(0);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [yearlyIncome, setYearlyIncome] = useState(auto[0]?.yearly_income ?? "");
+  const [creditScore, setCreditScore] = useState(auto[0]?.credit_score ?? null);
+  const [name, setName] = useState(auto[0]?.name ?? "");
+  const [email, setEmail] = useState(auto[0]?.email ?? "");
 
   // Check State Before Going To The Next Step
   const stepOneComlete = purchasePrice !== "" &&
                           autoMake !== "" &&
                           autoModel !== "" &&
                           yearlyIncome !== "" &&
-                          creditScore !== 0;
+                          creditScore !== 0 &&
+                          creditScore >= 300;
 
   const stepTwoComplete = name !== "" && email !== "";
 
@@ -78,13 +84,14 @@ const Home = () => {
               <InputText name="auto_make" label="Auto Make" setState={setAutoMake}/>
               <InputText name="auto_model" label="Auto Model" setState={setAutoModel}/>
             </div>
-            <InputMoney name="yearly_income" label="Estimated Yearly Income" setState={setYearlyIncome}/>
+            <InputMoney name="yearly_income" label="Estimated Yearly Income" inputValue={yearlyIncome} setState={setYearlyIncome}/>
             <InputNumber
               name="credit_score"
-              label="Estimated Credit Score"
+              label="Estimated Credit Score ( 300 - 850 )"
               minNum={0}
               maxNum={850}
               setState={setCreditScore}
+              inputValue={creditScore}
             />
 
             {/* Submit Button */}
@@ -116,8 +123,8 @@ const Home = () => {
             vel. Expedita?
           </p>
           <div className="flex flex-col space-y-2 mt-4">
-            <InputText name="name" label="Name" setState={setName}/>
-            <InputText name="email" label="Email" setState={setEmail}/>
+            <InputText name="name" label="Name" inputValue={name} setState={setName}/>
+            <InputText name="email" label="Email" inputValue={email} setState={setEmail}/>
             {/* Submit Button */}
             <div className="pt-4">
               <button className={stepTwoComplete ? ButtonClass.primary : ButtonClass.primaryDisabled}

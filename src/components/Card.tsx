@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ imgSrc, children }: CardProps) => (
         backgroundRepeat: "no-repeat",
       }}
     ></div>
-    <div className="card__body p-10">{children}</div>
+    <div className="card__body p-10 flex flex-col justify-between">{children}</div>
   </div>
 );
 

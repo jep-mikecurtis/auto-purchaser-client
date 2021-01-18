@@ -13,11 +13,7 @@ import {GetAutos} from '../../redux/actions/auto/AutoActions'
 import Card from "../../components/Card";
 import { InputText } from "../../components/Inputs";
 import { ButtonClass } from "../../components/types/ButtonsTypes";
-
-// Auto State Type From Store
-type AutoStateType = {
-    auto: AutoType[]
-}
+import {AutoStateType} from '../../redux/actions/auto/AutoTypes';
 
 type RegisterStateType = {
     auth: {
