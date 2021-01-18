@@ -7,6 +7,7 @@ export type InputType = {
     password?: boolean
     email?: boolean
     inputValue?: string | number
+    shouldDisable?: boolean
 }
 
 type InputClassType = {

@@ -42,11 +42,6 @@ const Layout: React.FC = ({ children }) => {
                                     Login
                                 </Link>
                             </li>
-                            <li>
-                                <Link to="/register">
-                                    New Account
-                                </Link>
-                            </li>
                         </ul> :
                         // Not Auth
                         <ul className="flex space-x-4">

@@ -1,5 +1,6 @@
 import { AUTH_REGISTER, AUTH_REGISTER_FAIL, AUTH_LOGIN, AUTH_LOGIN_FAIL, AUTH_LOGOUT, AuthResponseType } from '../actions/auth/AuthTypes'
 
+// Default State && Type
 type DefaultStateType = {
     success: boolean
     user: {
@@ -14,6 +15,7 @@ const DefaultState: DefaultStateType = {
     user: {}
 };
 
+// Action Type For Auth Reducer
 type ActionType = {
     type: string,
     payload: AuthResponseType
