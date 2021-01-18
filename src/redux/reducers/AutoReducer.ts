@@ -1,10 +1,17 @@
 import {AutoType, AUTO_CREATE, AUTO_GET} from '../actions/auto/AutoTypes';
 
-const DefaultState: AutoType[] = [];
+let DefaultState: AutoType[] = [];
 
 type ActionType = {
     type:  string,
     payload: AutoType
+}
+
+//Check If Auto Was Saved To Local Storage
+// And Set Default State
+const autos: AutoType[] = JSON.parse(localStorage.getItem('autos') || "{}");
+if (localStorage.getItem('autos')) {
+    DefaultState = autos
 }
 
 const autoReducer = (state: AutoType[] = DefaultState, action: ActionType) => {

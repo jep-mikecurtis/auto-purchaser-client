@@ -34,6 +34,7 @@ export const AutoApply = (data: AutoType) =>  async (dispatch: Dispatch) => {
 export const GetAutos = (data: GetAutoData) => async (dispatch: Dispatch) => {
     try {
         const res = (await axios.post(url + 'api/auto/get', data)).data;
+        localStorage.setItem('autos', JSON.stringify(res.data));
   
         if(res.success) {
             dispatch({

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {history} from '../redux/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Card from "../components/Card";
 import NumberFormat from 'react-number-format'
 
