@@ -7,7 +7,7 @@ import store from '../../store';
 import {AUTH_REGISTER, AUTH_REGISTER_FAIL, AUTH_LOGIN, AUTH_LOGIN_FAIL, AUTH_LOGOUT, RegisterType, AuthResponseType, AuthType, LoginType} from './AuthTypes'
 
 
-const url = "http://laravel-react.test/";
+const url = "https://dev-test-mcbackend.herokuapp.com/";
 
 export const AuthRegister = (data: RegisterType) =>  async (dispatch: Dispatch) => {
     try {

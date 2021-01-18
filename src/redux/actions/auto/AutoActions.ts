@@ -5,7 +5,7 @@ import {AutoType, AUTO_CREATE, AUTO_GET, GetAutoData} from './AutoTypes';
 import {AuthType} from '../auth/AuthTypes'
 import store from '../../store';
 
-const url = "http://laravel-react.test/";
+const url = "https://dev-test-mcbackend.herokuapp.com/";
 
 export const AutoApply = (data: AutoType) =>  async (dispatch: Dispatch) => {
     const auth: AuthType = store.getState().auth;

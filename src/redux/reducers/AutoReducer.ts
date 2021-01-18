@@ -9,8 +9,9 @@ type ActionType = {
 
 //Check If Auto Was Saved To Local Storage
 // And Set Default State
+let autos: AutoType[];
 if (localStorage.getItem('autos')) {
-    let autos: AutoType[] = JSON.parse(localStorage.getItem('autos') || "{}");
+    autos = JSON.parse(localStorage.getItem('autos') || "{}");
     DefaultState = autos
 }
 
