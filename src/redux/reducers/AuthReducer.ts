@@ -23,8 +23,8 @@ type ActionType = {
 
 //Check If Auth Was Saved To Local Storage
 // And Set Default State
-const auth = JSON.parse(localStorage.getItem('auth') || "{}");
 if (localStorage.getItem('auth')) {
+    let auth = JSON.parse(localStorage.getItem('auth') || "{}");
     DefaultState.success = true
     DefaultState.user = auth
 }
