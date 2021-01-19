@@ -29,6 +29,7 @@ const Home = () => {
   const [creditScore, setCreditScore] = useState(auto[0]?.credit_score ?? null);
   const [name, setName] = useState(auto[0]?.name ?? "");
   const [email, setEmail] = useState(auto[0]?.email ?? "");
+  const [emailErr, setEmailErr] = useState("");
 
   // Check State Before Going To The Next Step
   const stepOneComlete = purchasePrice !== "" &&
@@ -41,6 +42,8 @@ const Home = () => {
   const stepTwoComplete = name !== "" && email !== "";
 
   const nextStep = (step: number | string) => {
+    const emailReg = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+
     if (step === 2) {
       setStep(2);
     }
@@ -56,7 +59,13 @@ const Home = () => {
         credit_score: creditScore
       }
 
-      dispatch(AutoApply(data));
+      if(emailReg.test(data.email)) {
+        setEmailErr('');
+        dispatch(AutoApply(data));
+      } else {
+        setEmailErr('Must be valid email.')
+      }
+
     }
   };
 
@@ -97,8 +106,9 @@ const Home = () => {
             {/* Submit Button */}
             <div className="pt-4">
               <button
+                id="btnStepOne"
                 className={stepOneComlete ? ButtonClass.primary : ButtonClass.primaryDisabled}
-                onClick={() => nextStep(2)}
+                onClick={() => stepOneComlete ? nextStep(2) : null}
               >
                 Next
               </button>
@@ -125,10 +135,15 @@ const Home = () => {
           <div className="flex flex-col space-y-2 mt-4">
             <InputText name="name" label="Name" inputValue={name} setState={setName}/>
             <InputText name="email" label="Email" inputValue={email} setState={setEmail}/>
+            <small className="text-red-600">
+              {emailErr}
+            </small>
             {/* Submit Button */}
             <div className="pt-4">
-              <button className={stepTwoComplete ? ButtonClass.primary : ButtonClass.primaryDisabled}
-              onClick={() => nextStep("complete")}>Submit</button>
+              <button 
+              id="btnStepTwo"
+              className={stepTwoComplete ? ButtonClass.primary : ButtonClass.primaryDisabled}
+              onClick={() => stepTwoComplete ? nextStep("complete") : null}>Submit</button>
             </div>
           </div>
         </Card>
