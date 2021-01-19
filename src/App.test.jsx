@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom'
 import store from './redux/store';
 import Home from './pages/Home';
-import Regitser from './pages/auth/Register';
-import Register from './pages/auth/Register';
 
 // Home Page
 test('Home Page Opens', () => {
